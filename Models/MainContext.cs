@@ -17,9 +17,9 @@ namespace EventAppCore.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             Console.WriteLine("Using Environment variable {0}", Environment.GetEnvironmentVariable("MYSQLCONNSTR_localdb"));
-            //optionsBuilder.UseMySql(Environment.GetEnvironmentVariable("MYSQLCONNSTR_localdb"));
+            //optionsBuilder.UseMySql(Environment.GetEnvironmenVariable("MYSQLCONNSTR_localdb"));
             //optionsBuilder.UseMySql("Server=localhost;Database=EventApp;Uid=root");
-            optionsBuilder.UseMySql("Database=localdb;Data Source=127.0.0.1:55954;User Id=azure;Password=6#vWHD_$");
+            optionsBuilder.UseMySql("Database=localdb;Server=127.0.0.1:55954;Uid=azure;Password=6#vWHD_$");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
