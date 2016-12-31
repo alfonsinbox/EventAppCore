@@ -209,6 +209,9 @@
 /Users/alfonslange/Documents/Dotnet/Publish/NewEvent/Controllers/ApiControllers/EventController.cs
 /Users/alfonslange/Documents/Dotnet/Publish/NewEvent/Controllers/ApiControllers/LocationController.cs
 /Users/alfonslange/Documents/Dotnet/Publish/NewEvent/Controllers/ApiControllers/UserController.cs
+/Users/alfonslange/Documents/Dotnet/Publish/NewEvent/Migrations/20161231104600_Initial.cs
+/Users/alfonslange/Documents/Dotnet/Publish/NewEvent/Migrations/20161231104600_Initial.Designer.cs
+/Users/alfonslange/Documents/Dotnet/Publish/NewEvent/Migrations/MainContextModelSnapshot.cs
 /Users/alfonslange/Documents/Dotnet/Publish/NewEvent/Models/Category.cs
 /Users/alfonslange/Documents/Dotnet/Publish/NewEvent/Models/DbEntityBase.cs
 /Users/alfonslange/Documents/Dotnet/Publish/NewEvent/Models/Event.cs
