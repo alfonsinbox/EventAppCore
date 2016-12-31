@@ -20,7 +20,7 @@ namespace EventAppCore.Models
             //optionsBuilder.UseMySql(Environment.GetEnvironmenVariable("MYSQLCONNSTR_localdb"));
             //optionsBuilder.UseMySql("Server=localhost;Database=EventApp;Uid=root");
             //optionsBuilder.UseMySql("Database=localdb;Data Source=127.0.0.1:55954;User Id=azure;Password=6#vWHD_$");
-            optionsBuilder.UseMySql("Database=eventappcoredb;Data Source=eu-cdbr-azure-west-a.cloudapp.net;User Id=b400816cb0b397;Password=80b41c16");
+            optionsBuilder.UseMySql("Database=eventappdb;Data Source=eu-cdbr-azure-west-a.cloudapp.net;User Id=b8eec197bc2043;Password=a9669c43");
             Database.Migrate();
         }
 
