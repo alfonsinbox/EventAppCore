@@ -36,6 +36,12 @@ namespace EventAppCore
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
+
+            // Automatic migration on startup
+            using (var context = new MainContext())
+            {
+                context.Database.Migrate();
+            }
         }
 
         public IConfigurationRoot Configuration { get; set; }
