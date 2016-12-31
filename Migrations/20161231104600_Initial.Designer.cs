@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using EventAppCore.Models;
 
-namespace EventAppCore.Migrations
+namespace NewEvent.Migrations
 {
     [DbContext(typeof(MainContext))]
-    [Migration("20161228094555_Initial")]
+    [Migration("20161231104600_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

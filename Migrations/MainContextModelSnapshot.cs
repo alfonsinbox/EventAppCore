@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using EventAppCore.Models;
 
-namespace EventAppCore.Migrations
+namespace NewEvent.Migrations
 {
     [DbContext(typeof(MainContext))]
     partial class MainContextModelSnapshot : ModelSnapshot

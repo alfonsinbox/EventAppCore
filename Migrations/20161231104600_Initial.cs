@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace EventAppCore.Migrations
+namespace NewEvent.Migrations
 {
     public partial class Initial : Migration
     {
