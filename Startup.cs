@@ -1,19 +1,18 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
-using EventAppCore.Models;
-using EventAppCore.Models.View;
 using EventAppCore.Repositories;
 using EventAppCore.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using EventAppCore.Models;
+using EventAppCore.Models.View;
+using EventAppCore.Repositories;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
