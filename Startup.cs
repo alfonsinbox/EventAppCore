@@ -35,12 +35,6 @@ namespace EventAppCore
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
-
-            // Automatic migration on startup
-            using (var context = new MainContext())
-            {
-                context.Database.Migrate();
-            }
         }
 
         public IConfigurationRoot Configuration { get; set; }
@@ -61,6 +55,12 @@ namespace EventAppCore
             services.AddScoped<AccessTokenService>();
 
             services.AddDbContext<MainContext>();
+
+            // Automatic migration on startup
+            using (var context = new MainContext())
+            {
+                context.Database.Migrate();
+            }
 
             services.AddMvc().AddJsonOptions(config =>
             {
