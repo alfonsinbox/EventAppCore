@@ -46,6 +46,8 @@ namespace EventAppCore.Models
 
         [InverseProperty("BelongsTo")]
         public ICollection<RefreshToken> RefreshTokens { get; set; }
+        
+        public string MockProperty { get; set; } = "Just:a:value!";
 
         /*[InverseProperty("CreatedBy")]
         public ICollection<Category> CreatedCategories { get; set; }*/

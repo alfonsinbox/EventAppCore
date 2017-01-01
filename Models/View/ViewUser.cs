@@ -19,6 +19,7 @@ namespace EventAppCore.Models.View
 
         public string ProfilePictureUrl { get; set; }
 
+        public string MockProperty { get; set; }
 /*        [InverseProperty("UsersWithInterest")]
         public ICollection<Category> Interests { get; set; }*/
     }

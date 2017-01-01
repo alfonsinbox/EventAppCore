@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using EventAppCore.Models;
 using EventAppCore.Models.View;
@@ -30,7 +31,7 @@ namespace EventAppCore.Controllers.ApiControllers
             //var user = JsonConvert.DeserializeObject<User>(serUser);
             //Console.WriteLine(JsonConvert.SerializeObject(user, Formatting.Indented));
             var addedUser = await _userRepository.Put(userModel);
-            return Json(addedUser);
+            return Json(Mapper.Map<ViewUser>(addedUser));
         }
 
         [HttpPost("[action]")]
