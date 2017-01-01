@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -27,9 +28,6 @@ namespace EventAppCore.Controllers.ApiControllers
         [HttpPost("[action]")]
         public async Task<IActionResult> Create([FromBody] SignUpUser userModel)
         {
-            //Console.WriteLine(serUser);
-            //var user = JsonConvert.DeserializeObject<User>(serUser);
-            //Console.WriteLine(JsonConvert.SerializeObject(user, Formatting.Indented));
             var addedUser = await _userRepository.Put(userModel);
             return Json(Mapper.Map<ViewUser>(addedUser));
         }
@@ -37,29 +35,31 @@ namespace EventAppCore.Controllers.ApiControllers
         [HttpPost("[action]")]
         public IActionResult Get()
         {
-            return Json(_userRepository.GetById(_accessTokenService.GetIdFromToken(this.User)));
+            return Json(Mapper.Map<ViewUser>(_userRepository.GetById(_accessTokenService.GetIdFromToken(this.User))));
         }
 
         [HttpGet("[action]")]
         public IActionResult Get(string id)
         {
             var user = _userRepository.GetById(id);
-            Console.WriteLine(JsonConvert.SerializeObject(user, Formatting.Indented));
-            return Json(user);
+            //Console.WriteLine(JsonConvert.SerializeObject(user, Formatting.Indented));
+            return Json(Mapper.Map<ViewUser>(user));
         }
 
         [HttpGet("[action]")]
         public IActionResult Search(string query, int page = 0)
         {
-            if (query == null) return BadRequest();
+            var pageSize = 8;
 
+            if (query == null) return BadRequest();
+            
             var users = _userRepository.Search(query)
-                .Skip(page*8)
-                .Take(8)
-                .ProjectTo<SignUpUser>()
+                .Skip(page * pageSize)
+                .Take(pageSize)
+                //.ProjectTo<SignUpUser>()
                 .ToList();
-            //Console.WriteLine(JsonConvert.SerializeObject(users, Formatting.Indented));
-            return Json(users);
+
+            return Json(Mapper.Map<List<ViewUser>>(users));
         }
     }
 }
