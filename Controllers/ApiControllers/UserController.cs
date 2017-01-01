@@ -61,5 +61,11 @@ namespace EventAppCore.Controllers.ApiControllers
 
             return Json(Mapper.Map<List<ViewUser>>(users));
         }
+
+        [HttpGet("[action]")]
+        public IActionResult GetAll()
+        {   
+            return Json(Mapper.Map<List<ViewUser>>(_userRepository.GetAll().ToList()));
+        }
     }
 }
