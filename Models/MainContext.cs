@@ -20,7 +20,8 @@ namespace EventAppCore.Models
             //optionsBuilder.UseMySql(Environment.GetEnvironmenVariable("MYSQLCONNSTR_localdb"));
             //optionsBuilder.UseMySql("Server=localhost;Database=EventApp;Uid=root");
             //optionsBuilder.UseMySql("Database=localdb;Data Source=127.0.0.1:55954;User Id=azure;Password=6#vWHD_$");
-            optionsBuilder.UseMySql("Database=eventappdb;Data Source=eu-cdbr-azure-west-a.cloudapp.net;User Id=b8eec197bc2043;Password=a9669c43");
+            //optionsBuilder.UseMySql("Database=eventappdb;Data Source=eu-cdbr-azure-west-a.cloudapp.net;User Id=b8eec197bc2043;Password=a9669c43");
+            optionsBuilder.UseMySql("Server=tcp:eventdbserver.database.windows.net,1433;Initial Catalog=eventappcoredb;Persist Security Info=False;User ID={your_username};Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
