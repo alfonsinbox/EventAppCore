@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using EventAppCore.Models;
 
-namespace NewEvent.Migrations
+namespace EventAppCore.Migrations
 {
     [DbContext(typeof(MainContext))]
-    [Migration("20170101134035_AddedMockProperty")]
-    partial class AddedMockProperty
+    [Migration("20170102141917_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

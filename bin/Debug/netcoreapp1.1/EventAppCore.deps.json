@@ -14,7 +14,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v1.1": {
-      "NewEvent/1.0.0": {
+      "EventAppCore/1.0.0": {
         "dependencies": {
           "Microsoft.NETCore.App": "1.1.0",
           "Microsoft.AspNetCore.Mvc": "1.1.0",
@@ -37,10 +37,10 @@
           "Microsoft.ApplicationInsights.AspNetCore": "1.0.2"
         },
         "runtime": {
-          "NewEvent.dll": {}
+          "EventAppCore.dll": {}
         },
         "compile": {
-          "NewEvent.dll": {}
+          "EventAppCore.dll": {}
         }
       },
       "AutoMapper/5.2.0": {
@@ -3419,7 +3419,7 @@
     }
   },
   "libraries": {
-    "NewEvent/1.0.0": {
+    "EventAppCore/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

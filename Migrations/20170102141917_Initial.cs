@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace NewEvent.Migrations
+namespace EventAppCore.Migrations
 {
     public partial class Initial : Migration
     {
@@ -12,8 +12,7 @@ namespace NewEvent.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false)
-                        .Annotation("MySql:ValueGeneratedOnAdd", true),
+                    Id = table.Column<string>(nullable: false),
                     AccessCode = table.Column<string>(nullable: true),
                     AccessLevel = table.Column<int>(nullable: false),
                     BirthDate = table.Column<DateTimeOffset>(nullable: false),
@@ -24,6 +23,7 @@ namespace NewEvent.Migrations
                     FirstName = table.Column<string>(nullable: true),
                     ForgottenPasswordToken = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
+                    MockProperty = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
                     ProfilePictureUrl = table.Column<string>(nullable: true),
                     SaltAndHash = table.Column<string>(nullable: true),
@@ -41,8 +41,7 @@ namespace NewEvent.Migrations
                 name: "Locations",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false)
-                        .Annotation("MySql:ValueGeneratedOnAdd", true),
+                    Id = table.Column<string>(nullable: false),
                     Address = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: true),
                     Country = table.Column<string>(nullable: true),
@@ -68,8 +67,7 @@ namespace NewEvent.Migrations
                 name: "RefreshTokens",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false)
-                        .Annotation("MySql:ValueGeneratedOnAdd", true),
+                    Id = table.Column<string>(nullable: false),
                     BelongsToId = table.Column<string>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     Device = table.Column<string>(nullable: true),
@@ -91,8 +89,7 @@ namespace NewEvent.Migrations
                 name: "Events",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false)
-                        .Annotation("MySql:ValueGeneratedOnAdd", true),
+                    Id = table.Column<string>(nullable: false),
                     CanceledReason = table.Column<string>(nullable: true),
                     CreatedById = table.Column<string>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: false),
@@ -126,8 +123,7 @@ namespace NewEvent.Migrations
                 name: "UserEvents",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false)
-                        .Annotation("MySql:ValueGeneratedOnAdd", true),
+                    Id = table.Column<string>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     EventId = table.Column<string>(nullable: true),
                     Note = table.Column<string>(nullable: true),
