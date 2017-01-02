@@ -20,8 +20,11 @@ namespace EventAppCore
 {
     public class Startup
     {
+        private IHostingEnvironment _environment;
+
         public Startup(IHostingEnvironment env)
         {
+            _environment = env;
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -57,7 +60,7 @@ namespace EventAppCore
             services.AddDbContext<MainContext>();
 
             // Automatic migration on startup
-            using (var context = new MainContext())
+            using (var context = new MainContext(_environment))
             {
                 context.Database.Migrate();
             }
