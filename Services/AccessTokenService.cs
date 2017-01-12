@@ -7,6 +7,7 @@ using System.Text;
 using EventAppCore.Models;
 using EventAppCore.Models.View;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace EventAppCore.Services
 {
@@ -14,7 +15,9 @@ namespace EventAppCore.Services
     {
         public ViewAccessToken GetToken(User user)
         {
-            var jwt = new JwtSecurityToken(
+            var tokenValidFor = TimeSpan.FromMinutes(20);
+
+            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(new JwtSecurityToken(
                 issuer: "ExampleIssuer",
                 audience: "ExampleAudience",
                 claims: new List<Claim>()
@@ -27,15 +30,16 @@ namespace EventAppCore.Services
                     // Claim for JWT type (refresh)?
                 },
                 notBefore: DateTime.Now,
-                expires: DateTime.Now.Add(TimeSpan.FromMinutes(20)),
-                signingCredentials:
-                new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes("abc123def456ghi789")),
-                    SecurityAlgorithms.HmacSha256));
+                expires: DateTime.Now.Add(tokenValidFor),
+                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes("abc123def456ghi789")),
+                    SecurityAlgorithms.HmacSha256)));
+
+            Console.WriteLine("We have this:" + JsonConvert.SerializeObject(encodedJwt));
 
             return new ViewAccessToken()
             {
-                Token = jwt.RawData,
-                Expires = jwt.ValidTo.Subtract(jwt.ValidFrom).Seconds
+                Token = encodedJwt,
+                Expires = (int)tokenValidFor.TotalSeconds
             };
         }
 

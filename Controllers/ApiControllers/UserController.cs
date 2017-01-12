@@ -33,9 +33,16 @@ namespace EventAppCore.Controllers.ApiControllers
         }
 
         [HttpGet("[action]")]
-        public IActionResult Get()
+        public IActionResult GetMe()
         {
-            return Json(Mapper.Map<ViewUser>(_userRepository.GetById(_accessTokenService.GetIdFromToken(this.User))));
+            try
+            {
+                return Json(Mapper.Map<ViewUser>(_userRepository.GetById(_accessTokenService.GetIdFromToken(this.User))));
+            }
+            catch (Exception e)
+            {
+                return Json(e.StackTrace);
+            }
         }
 
         [HttpGet("[action]")]
@@ -49,7 +56,7 @@ namespace EventAppCore.Controllers.ApiControllers
         [HttpGet("[action]")]
         public IActionResult Search(string query, int page = 0)
         {
-            var pageSize = 8;
+            const int pageSize = 8;
 
             if (query == null) return BadRequest();
             

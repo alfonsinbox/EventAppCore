@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AutoMapper;
 using EventAppCore.Models.View;
 using EventAppCore.Repositories;
@@ -40,6 +41,7 @@ namespace EventAppCore.Controllers.ApiControllers
         [HttpGet("[action]")]
         public IActionResult GetAccessToken(string refreshToken)
         {
+
             return Json(_accessTokenServices.GetToken(_refreshTokenRepository.GetUserFromToken(refreshToken)));
         }
 
