@@ -32,7 +32,7 @@ namespace EventAppCore.Controllers.ApiControllers
             return Json(Mapper.Map<ViewUser>(addedUser));
         }
 
-        [HttpPost("[action]")]
+        [HttpGet("[action]")]
         public IActionResult Get()
         {
             return Json(Mapper.Map<ViewUser>(_userRepository.GetById(_accessTokenService.GetIdFromToken(this.User))));

@@ -60,10 +60,12 @@ namespace EventAppCore
             services.AddDbContext<MainContext>();
 
             // Automatic migration on startup
-            using (var context = new MainContext(_environment))
+            // ** Will not run when only published, applies after first request.
+            // ** Trying to run it in the postPublish instead
+            /*using (var context = new MainContext(_environment))
             {
                 context.Database.Migrate();
-            }
+            }*/
 
             services.AddMvc().AddJsonOptions(config =>
             {
