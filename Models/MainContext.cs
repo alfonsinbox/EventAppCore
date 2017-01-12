@@ -17,8 +17,6 @@ namespace EventAppCore.Models
 
         public DbSet<RefreshToken> RefreshTokens { get; set; }
 
-        public DbSet<TempClass> TempClasses { get; set; }
-
         private readonly IHostingEnvironment _environment;
         public MainContext(IHostingEnvironment environment)
         {
