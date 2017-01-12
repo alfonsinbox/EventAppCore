@@ -8,6 +8,7 @@ using EventAppCore.Models;
 using EventAppCore.Models.View;
 using EventAppCore.Repositories;
 using EventAppCore.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -32,6 +33,7 @@ namespace EventAppCore.Controllers.ApiControllers
             return Json(Mapper.Map<ViewUser>(addedUser));
         }
 
+        [Authorize]
         [HttpGet("[action]")]
         public IActionResult GetMe()
         {
