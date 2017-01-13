@@ -117,7 +117,7 @@ namespace EventAppCore
 
             }
 
-            const string secretKey = "abc123def456ghi789"; //TODO Replace that key
+            var secretKey = Environment.GetEnvironmentVariable("JWT_SIGNING_KEY");
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
 
             var tokenValidationParameters = new TokenValidationParameters
@@ -128,13 +128,13 @@ namespace EventAppCore
 
                 // Validate the JWT Issuer (iss) claim
                 ValidateIssuer = true,
-                ValidIssuer = "ExampleIssuer",
+                ValidIssuer = "https://eventappcore.azurewebsites.net/",
 
                 // Validate the JWT Audience (aud) claim
                 ValidateAudience = true,
-                ValidAudience = "ExampleAudience",
+                ValidAudience = "https://eventappcore.azurewebsites.net/",
 
-                // Validate the token expiry
+                // Validate the token expiry≤
                 ValidateLifetime = true,
 
                 // If you want to allow a certain amount of clock drift, set that here:

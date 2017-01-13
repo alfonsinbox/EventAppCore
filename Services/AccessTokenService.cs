@@ -18,8 +18,8 @@ namespace EventAppCore.Services
             var tokenValidFor = TimeSpan.FromMinutes(20);
 
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(new JwtSecurityToken(
-                issuer: "ExampleIssuer",
-                audience: "ExampleAudience",
+                issuer: "https://eventappcore.azurewebsites.net/",
+                audience: "https://eventappcore.azurewebsites.net/",
                 claims: new List<Claim>()
                 {
                     new Claim(JwtRegisteredClaimNames.Sub, user.Id),
@@ -31,7 +31,7 @@ namespace EventAppCore.Services
                 },
                 notBefore: DateTime.Now,
                 expires: DateTime.Now.Add(tokenValidFor),
-                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes("abc123def456ghi789")),
+                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("JWT_SIGNING_KEY"))),
                     SecurityAlgorithms.HmacSha256)));
 
             Console.WriteLine("We have this:" + JsonConvert.SerializeObject(encodedJwt));

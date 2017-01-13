@@ -1,2 +1,4 @@
 EventAppCore.xproj
 .vscode
+bin
+obj
