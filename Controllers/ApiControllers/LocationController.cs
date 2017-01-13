@@ -45,6 +45,7 @@ namespace EventAppCore.Controllers.ApiControllers
         {
             return Json(Mapper.Map<ViewLocation>(_locationRepository.GetById(id)
                 .WithDistanceFrom(latitude, longitude)));
+
         }
 
         // page = the amount of "chunks" it should skip in database before reading the data
