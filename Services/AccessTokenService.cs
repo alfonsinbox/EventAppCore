@@ -31,7 +31,9 @@ namespace EventAppCore.Services
                 },
                 notBefore: DateTime.Now,
                 expires: DateTime.Now.Add(tokenValidFor),
-                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("JWT_SIGNING_KEY"))),
+                signingCredentials: new SigningCredentials(
+                    new SymmetricSecurityKey(
+                        Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("JWT_SIGNING_KEY"))),
                     SecurityAlgorithms.HmacSha256)));
 
             Console.WriteLine("We have this:" + JsonConvert.SerializeObject(encodedJwt));
@@ -39,7 +41,7 @@ namespace EventAppCore.Services
             return new ViewAccessToken()
             {
                 Token = encodedJwt,
-                Expires = (int)tokenValidFor.TotalSeconds
+                Expires = (int) tokenValidFor.TotalSeconds
             };
         }
 

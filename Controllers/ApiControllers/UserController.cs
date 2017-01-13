@@ -37,14 +37,7 @@ namespace EventAppCore.Controllers.ApiControllers
         [HttpGet("[action]")]
         public IActionResult GetMe()
         {
-            try
-            {
-                return Json(Mapper.Map<ViewUser>(_userRepository.GetById(_accessTokenService.GetIdFromToken(this.User))));
-            }
-            catch (Exception e)
-            {
-                return Json(e.StackTrace);
-            }
+            return Json(Mapper.Map<ViewUser>(_userRepository.GetById(_accessTokenService.GetIdFromToken(this.User))));
         }
 
         [HttpGet("[action]")]
@@ -61,19 +54,17 @@ namespace EventAppCore.Controllers.ApiControllers
             const int pageSize = 8;
 
             if (query == null) return BadRequest();
-            
-            var users = _userRepository.Search(query)
+
+            return Json(Mapper.Map<List<ViewUser>>(_userRepository.Search(query)
                 .Skip(page * pageSize)
                 .Take(pageSize)
                 //.ProjectTo<SignUpUser>()
-                .ToList();
-
-            return Json(Mapper.Map<List<ViewUser>>(users));
+                .ToList()));
         }
 
         [HttpGet("[action]")]
         public IActionResult GetAll()
-        {   
+        {
             return Json(Mapper.Map<List<ViewUser>>(_userRepository.GetAll().ToList()));
         }
     }
