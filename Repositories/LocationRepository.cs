@@ -20,7 +20,7 @@ namespace EventAppCore.Repositories
 
         public Location GetById(string id)
         {
-            return GetAll().Single(l => l.Id == id);
+            return _mainContext.Locations.Single(l => l.Id == id);
         }
 
         public IQueryable<Location> GetAll()
