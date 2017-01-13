@@ -32,6 +32,7 @@ namespace EventAppCore.Repositories
         {
             return _mainContext.Users
                 .Include(u => u.UserEvents)
+                    .ThenInclude(ue => ue.Event)
                 .Include(u => u.RefreshTokens)
                 .AsQueryable();
         }
