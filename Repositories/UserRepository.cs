@@ -38,7 +38,12 @@ namespace EventAppCore.Repositories
 
         public IQueryable<User> Search(string query)
         {
-            return GetAll().Where(u => u.Username.ToLower().Contains(query)).AsQueryable();
+            query = query.ToLower();
+            return GetAll()
+                .Where(u => u.Username.ToLower().Contains(query) ||
+                            u.LastName.ToLower().Contains(query) ||
+                            u.FirstName.ToLower().Contains(query))
+                .AsQueryable();
         }
 
         public async Task<User> Put(User user)
