@@ -24,7 +24,7 @@ namespace EventAppCore.Models.View
 
         public ViewUser CreatedBy { get; set; }
 
-        public Location Location { get; set; }
+        public ViewLocation Location { get; set; }
 
         //public ICollection<Category> Categories { get; set; }
 

@@ -17,13 +17,15 @@ namespace EventAppCore.Controllers.ApiControllers
         private readonly EventRepository _eventRepository;
         private readonly AccessTokenService _accessTokenService;
         private readonly UserRepository _userRepository;
+        private readonly LocationRepository _locationRepository;
 
         public EventController(EventRepository eventRepository, AccessTokenService accessTokenService,
-            UserRepository userRepository)
+            UserRepository userRepository, LocationRepository locationRepository)
         {
             _eventRepository = eventRepository;
             _accessTokenService = accessTokenService;
             _userRepository = userRepository;
+            _locationRepository = locationRepository;
         }
 
         [HttpPost("[action]")]
@@ -31,7 +33,8 @@ namespace EventAppCore.Controllers.ApiControllers
         public IActionResult Create([FromBody] CreateEvent eventModel)
         {
             var requestingUser = _userRepository.GetById(_accessTokenService.GetIdFromToken(this.User));
-            var addedEvent = _eventRepository.Put(eventModel, requestingUser);
+            var desiredLocation = _locationRepository.GetById(eventModel.LocationId);
+            var addedEvent = _eventRepository.Put(eventModel, requestingUser, desiredLocation);
             return Json(addedEvent);
         }
 
@@ -39,8 +42,8 @@ namespace EventAppCore.Controllers.ApiControllers
         [Authorize]
         public IActionResult Get()
         {
-            return Json(_eventRepository.GetAll()
-                .Where(e => e.CreatedBy == _userRepository.GetById(_accessTokenService.GetIdFromToken(this.User))));
+            return Json(Mapper.Map<List<ViewEvent>>(_eventRepository.GetAll()
+                .Where(e => e.CreatedBy == _userRepository.GetById(_accessTokenService.GetIdFromToken(this.User)))));
         }
 
         [HttpGet("[action]")]
@@ -48,11 +51,11 @@ namespace EventAppCore.Controllers.ApiControllers
         public IActionResult GetUpcoming()
         {
             // TODO Check what role the user has
-            return Json(_eventRepository.GetAll()
+            return Json(Mapper.Map<List<ViewEvent>>(_eventRepository.GetAll()
                 .Where(e => e.EndTime > DateTimeOffset.UtcNow &&
                             e.UserEvents.Any(ue => ue.User ==
                                                    _userRepository.GetById(
-                                                       _accessTokenService.GetIdFromToken(this.User)))));
+                                                       _accessTokenService.GetIdFromToken(this.User))))));
         }
 
         [HttpGet("[action]")]

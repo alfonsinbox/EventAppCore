@@ -14,7 +14,7 @@ namespace EventAppCore.Models.View
 
         public DateTimeOffset EndTime { get; set; }
 
-        public Location Location { get; set; }
+        public string LocationId { get; set; }
 
         public string MainImageUrl { get; set; }
     }

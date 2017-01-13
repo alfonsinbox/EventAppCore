@@ -20,7 +20,7 @@ namespace EventAppCore
 {
     public class Startup
     {
-        private IHostingEnvironment _environment;
+        private readonly IHostingEnvironment _environment;
 
         public Startup(IHostingEnvironment env)
         {
@@ -46,7 +46,10 @@ namespace EventAppCore
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddApplicationInsightsTelemetry(Configuration);
+            if (!_environment.IsEnvironment("LocalMac"))
+            {
+                services.AddApplicationInsightsTelemetry(Configuration);
+            }
 
             // Include interfaces here as well, along with derived class?
             services.AddScoped<UserRepository>();
@@ -79,6 +82,11 @@ namespace EventAppCore
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            if (_environment.IsEnvironment("LocalMac"))
+            {
+                loggerFactory.AddConsole();
+            }
+            app.UseStatusCodePages();
             // TODO
             // This may be a bad idea, no clue how much unnecessary stuff this does
             // Would prefer to use dependency injection for this?
@@ -99,10 +107,15 @@ namespace EventAppCore
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseApplicationInsightsRequestTelemetry();
+            if (!_environment.IsEnvironment("LocalMac"))
+            {
+                app.UseApplicationInsightsRequestTelemetry();
+                app.UseApplicationInsightsExceptionTelemetry();
+            }
+            if (_environment.IsEnvironment("LocalMac"))
+            {
 
-            app.UseApplicationInsightsExceptionTelemetry();
-
+            }
 
             const string secretKey = "abc123def456ghi789"; //TODO Replace that key
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));

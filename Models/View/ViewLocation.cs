@@ -25,7 +25,8 @@ namespace EventAppCore.Models.View
 /*
                         Could be useful when searching for events from location
                         public ICollection<Event> Events { get; set; }
-                */
+*/
+        // Is CreatedBy necessary to include?
         public ViewUser CreatedBy { get; set; }
 
         public double Distance { get; set; }

@@ -18,7 +18,7 @@ namespace EventAppCore.Repositories
 
         public Event GetById(string id)
         {
-            return _mainContext.Events.Single(e => e.Id == id);
+            return GetAll().Single(e => e.Id == id);
         }
 
         public IQueryable<Event> GetAll()
@@ -26,6 +26,7 @@ namespace EventAppCore.Repositories
             return _mainContext.Events
                 .Include(e => e.CreatedBy)
                 .Include(e => e.UserEvents)
+                .Include(e => e.Location)
                 .AsQueryable();
         }
 
@@ -48,10 +49,11 @@ namespace EventAppCore.Repositories
             return addedEntity;
         }
 
-        public async Task<Event> Put(CreateEvent model, User creator)
+        public async Task<Event> Put(CreateEvent model, User creator, Location location)
         {
             var eventEntity = Mapper.Map<Event>(model);
             eventEntity.CreatedBy = creator;
+            eventEntity.Location = location;
             return await Put(eventEntity);
         }
     }

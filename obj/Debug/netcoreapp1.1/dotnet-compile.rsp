@@ -26,6 +26,7 @@
 --reference:/Users/alfonslange/.nuget/packages/Microsoft.AspNetCore.Cryptography.KeyDerivation/1.1.0/lib/netstandard1.3/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 --reference:/Users/alfonslange/.nuget/packages/Microsoft.AspNetCore.DataProtection/1.1.0/lib/netstandard1.3/Microsoft.AspNetCore.DataProtection.dll
 --reference:/Users/alfonslange/.nuget/packages/Microsoft.AspNetCore.DataProtection.Abstractions/1.1.0/lib/netstandard1.3/Microsoft.AspNetCore.DataProtection.Abstractions.dll
+--reference:/Users/alfonslange/.nuget/packages/Microsoft.AspNetCore.Diagnostics/1.1.0/lib/netstandard1.3/Microsoft.AspNetCore.Diagnostics.dll
 --reference:/Users/alfonslange/.nuget/packages/Microsoft.AspNetCore.Diagnostics.Abstractions/1.1.0/lib/netstandard1.0/Microsoft.AspNetCore.Diagnostics.Abstractions.dll
 --reference:/Users/alfonslange/.nuget/packages/Microsoft.AspNetCore.Hosting/1.1.0/lib/netstandard1.5/Microsoft.AspNetCore.Hosting.dll
 --reference:/Users/alfonslange/.nuget/packages/Microsoft.AspNetCore.Hosting.Abstractions/1.1.0/lib/netstandard1.3/Microsoft.AspNetCore.Hosting.Abstractions.dll

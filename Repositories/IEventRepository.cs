@@ -6,6 +6,6 @@ namespace EventAppCore.Repositories
 {
     public interface IEventRepository : IRepository<Event>
     {
-        Task<Event> Put(CreateEvent model, User creator);
+        Task<Event> Put(CreateEvent model, User creator, Location location);
     }
 }

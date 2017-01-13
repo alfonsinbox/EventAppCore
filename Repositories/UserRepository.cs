@@ -23,16 +23,17 @@ namespace EventAppCore.Repositories
 
         public User GetById(string id)
         {
-            return _mainContext.Users
-                .Include(u => u.UserEvents)
-                .Include(u => u.RefreshTokens)
+            return GetAll()
                 //.Include(u => u.Interests)
                 .Single(u => u.Id == id);
         }
 
         public IQueryable<User> GetAll()
         {
-            return _mainContext.Users.AsQueryable();
+            return _mainContext.Users
+                .Include(u => u.UserEvents)
+                .Include(u => u.RefreshTokens)
+                .AsQueryable();
         }
 
         public IQueryable<User> Search(string query)
