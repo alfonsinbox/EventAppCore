@@ -23,9 +23,7 @@ namespace EventAppCore.Repositories
 
         public User GetById(string id)
         {
-            return GetAll()
-                //.Include(u => u.Interests)
-                .Single(u => u.Id == id);
+            return _mainContext.Users.Single(u => u.Id == id);
         }
 
         public IQueryable<User> GetAll()
@@ -34,6 +32,7 @@ namespace EventAppCore.Repositories
                 .Include(u => u.UserEvents)
                     .ThenInclude(ue => ue.Event)
                 .Include(u => u.RefreshTokens)
+                //.Include(u => u.Interests)
                 .AsQueryable();
         }
 

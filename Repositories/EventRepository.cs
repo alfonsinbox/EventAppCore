@@ -18,7 +18,7 @@ namespace EventAppCore.Repositories
 
         public Event GetById(string id)
         {
-            return GetAll().Single(e => e.Id == id);
+            return _mainContext.Events.Single(e => e.Id == id);
         }
 
         public IQueryable<Event> GetAll()
