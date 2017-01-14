@@ -14,6 +14,7 @@ using EventAppCore.Models;
 using EventAppCore.Models.View;
 using EventAppCore.Repositories;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
 namespace EventAppCore
@@ -75,6 +76,8 @@ namespace EventAppCore
                 config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 config.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
+
+            services.AddMvcCore().AddJsonFormatters(o => o.DateFormatString = "yyyy-MM-dd'T'HH:mm:ss'Z'");
 
             services.AddMvc();
         }
