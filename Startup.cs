@@ -71,15 +71,16 @@ namespace EventAppCore
                 context.Database.Migrate();
             }*/
 
-            services.AddMvc().AddJsonOptions(config =>
-            {
-                config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                config.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            });
+            services.AddMvc()
+                .AddJsonOptions(config =>
+                {
+                    config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                    config.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    config.SerializerSettings.DateFormatString = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+                });
+            //.AddJsonFormatters(config => config.DateFormatString = "yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-            services.AddMvcCore().AddJsonFormatters(o => o.DateFormatString = "yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-            services.AddMvc();
+            //services.AddMvcCore();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
@@ -114,10 +115,6 @@ namespace EventAppCore
             {
                 app.UseApplicationInsightsRequestTelemetry();
                 app.UseApplicationInsightsExceptionTelemetry();
-            }
-            if (_environment.IsEnvironment("LocalMac"))
-            {
-
             }
 
             var secretKey = Environment.GetEnvironmentVariable("JWT_SIGNING_KEY");

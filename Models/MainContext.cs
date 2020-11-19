@@ -33,7 +33,9 @@ namespace EventAppCore.Models
             //optionsBuilder.UseMySql("Database=eventappdb;Data Source=eu-cdbr-azure-west-a.cloudapp.net;User Id=b8eec197bc2043;Password=a9669c43");
             if (_environment.IsEnvironment("LocalMac"))
             {
-                optionsBuilder.UseMySql(Environment.GetEnvironmentVariable("MYSQLCONNSTR_localdb"));
+                //optionsBuilder.UseMySql(Environment.GetEnvironmentVariable("MYSQLCONNSTR_localdb"));
+                optionsBuilder.UseSqlServer(
+                    "Server=tcp:eventdbserver.database.windows.net,1433;Initial Catalog=eventappcoredb;Persist Security Info=False;User ID=eventadmin;Password=eVent123#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
             else if (_environment.IsDevelopment())
             {
